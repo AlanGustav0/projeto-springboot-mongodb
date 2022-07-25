@@ -2,6 +2,7 @@ package com.educandoweb.springbootmongodb.config;
 
 import com.educandoweb.springbootmongodb.domain.Post;
 import com.educandoweb.springbootmongodb.domain.User;
+import com.educandoweb.springbootmongodb.dto.AuthorDTO;
 import com.educandoweb.springbootmongodb.repository.PostRepository;
 import com.educandoweb.springbootmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,12 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post post1 = new Post(null,sdf.parse("25/07/2022"),"Partiu viagem","Viajando para São Paulo",maria);
-        Post post2 = new Post(null,sdf.parse("25/07/2022"),"Belo dia","Bom dia São Paulo",maria);
-
         userRepository.saveAll(Arrays.asList(maria,alex,bob));
+
+        Post post1 = new Post(null,sdf.parse("25/07/2022"),"Partiu viagem","Viajando para São Paulo",new AuthorDTO(maria));
+        Post post2 = new Post(null,sdf.parse("25/07/2022"),"Belo dia","Bom dia São Paulo",new AuthorDTO(maria));
+
+
         postRepository.saveAll(Arrays.asList(post1,post2));
     }
 }
